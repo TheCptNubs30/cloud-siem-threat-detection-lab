@@ -12,6 +12,9 @@ This project demonstrates the end-to-end engineering, configuration, and validat
 * **Network Infrastructure:** Managed entirely via Azure Network Security Groups (NSGs).
 * **Telemetry Agent:** Wazuh Endpoint Agent (`ossec-agent`).
 
+### Live Environment Telemetry Metrics
+![Wazuh Aggregated Dashboard Console](dashboard_active.png)
+
 ---
 
 ## 🛠️ Technical Implementation & Milestones
@@ -24,7 +27,7 @@ This project demonstrates the end-to-end engineering, configuration, and validat
 ### Phase 2: Endpoint Agent Engineering & Troubleshooting
 * Successfully deployed the endpoint monitoring daemon onto the target Windows host utilizing a decoupled, multi-stage PowerShell installation workflow.
 * Triaged and resolved a network connection timeout issue (`ERROR: (1208): Unable to connect to enrollment service`) by engineering high-priority ingress rules inside the cloud firewall, successfully stabilizing the secure TLS handshake between the host and the manager.
-* Verified real-time connection status, bringing the telemetry pipeline to an **Active** state.
+* Verified real-time connection status, bringing the telemetry pipeline to an active state.
 
 ---
 
@@ -39,6 +42,19 @@ To prove the efficacy of the alerting logic, a live adversarial scenario was sim
 ### 2. Credential Access: Brute-Force Simulation (MITRE ATT&CK T1110)
 * **Action:** Orchestrated a PowerShell automation loop generating rapid, failed authentication requests against the endpoint using unauthorized local accounts (`HackerSteve`).
 * **SIEM Detection:** The SIEM successfully aggregated and flagged multiple sequential **Event ID 4625** occurrences, categorizing the behavior as active password guessing.
+
+### Controlled Adversarial Testing Workspace
+![Multi-Window Simulation and Validation Workspace](live_attack_capture.png)
+
+---
+
+## 🔍 Real-World In-the-Wild Attack Capture
+
+* **Observation:** Within minutes of exposing the Linux management node to the public internet, the SIEM began capturing automated external botnets attempting credential brute-forcing via SSH.
+* **Telemetry Data:** Successfully logged multiple external authentication failures targeting non-existent system users, demonstrating the immediate real-world utility of continuous monitoring.
+
+### In-the-Wild Threat Intelligence Telemetry
+![Live SSH Brute-Force Log Capture](events_active.png)
 
 ---
 
